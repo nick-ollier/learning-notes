@@ -17,10 +17,10 @@ console.log(uploadsDirectory);                                                  
 const util = require('util');
 const { log } = require('util');                                                    // Destructured import.
 
-util.log( path.basename(__filename) );                                              // Logs with time and date
+util.log(path.basename(__filename));                                              // Logs with time and date
 util.log(' ^ The name of the current file');
 
-log( path.basename(__filename) );
+log(path.basename(__filename));
 log(' ^ The name of the current file');
 
 
@@ -29,12 +29,12 @@ log(' ^ The name of the current file');
 
 const v8 = require('v8');                                                           // Provides information about heap memory through different methods
 
-util.log( v8.getHeapStatistics() );                                                 // Returns statistics about heap such as total heap size, used heap size, heap size limit, total available size etc.
+util.log(v8.getHeapStatistics());                                                 // Returns statistics about heap such as total heap size, used heap size, heap size limit, total available size etc.
 
 
-// Readline
+// Readline (Conflicts with Events)
 // https://nodejs.org/api/readline.html
-
+/** 
 const readline = require('readline');
 
 const rl = readline.createInterface({
@@ -45,4 +45,29 @@ const rl = readline.createInterface({
 rl.question('How are you? ', answer => {                                            // First param is input - Second param is output
     console.log(`You are: ${answer}`);
 });
+*/
 
+// Events (Conflicts with Readline)
+// https://nodejs.org/api/events.html
+
+const events = require('events');                                                   // Events are asynchronous
+
+const emitter = new events.EventEmitter();                                          // EventEmitter is used to create custom events
+
+emitter.on("customEvent", (message, user) => {
+    console.log(`${user}: ${message}`);
+})
+
+emitter.emit("customEvent", "Hello World", "Computer");
+emitter.emit("customEvent", "Cool!", "Nick")
+
+process.stdin.on("data", data => {
+    const input = data.toString().trim();
+
+    if (input === "exit") {
+        emitter.emit("customEvent", "Goodbye!", "process")
+        process.exit();
+    }
+
+    emitter.emit("customEvent", input, "terminal");
+})

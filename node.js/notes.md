@@ -3,7 +3,7 @@
 ### General @12.9.1
 
 - Single Threaded 
-- Asyncronous (Multitasking)
+- ASynchronous (Multitasking)
 - Requests delivered in the order they're raised
 - No blocking
 
