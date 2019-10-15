@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>React Example</title>
+    <script src="https://unpkg.com/react@16.7.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        // const Hello = (props) => {
+        //     console.log(props);
+        //     return (
+        //         <div>
+        //             <h1>Good Morning, {props.country}</h1>
+        //             <p>Have a {props.dayType} day!</p>
+        //         </div>
+        //     )
+        // };
+
+        const Hello = ({country, dayType}) => {
+            return (
+                <div>
+                    <h1>Good Morning, {country}</h1>
+                    <p>Have a {dayType} day!</p>
+                </div>
+            )
+        };
+        
+        ReactDOM.render(
+            <Hello country="Vietnam" dayType="great" />,
+            document.getElementById("root")
+        );
+    </script>
+</body>
+
+</html>

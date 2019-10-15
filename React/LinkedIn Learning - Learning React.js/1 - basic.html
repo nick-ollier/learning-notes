@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>React Example</title>
+    <script src="https://unpkg.com/react@16.7.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <!--
+    <script type="text/javascript">
+        ReactDOM.render(
+            React.createElement("h1", { "style": { "color": "tomato" } }, "Hello World"),           // Tag, Properties, Child Content
+            document.getElementById("root")
+        );
+    </script>
+    -->
+
+    <!--
+    <script type="text/javascript">
+        ReactDOM.render(
+            React.createElement(
+                "div",
+                null,
+                React.createElement(
+                    "h1",
+                    { "style": { "color": "tomato" } },
+                    "Hello World"
+                )),
+            document.getElementById("root")
+        );
+    </script>
+    -->
+
+    <!--
+    <script type="text/babel">
+        ReactDOM.render(
+            <h1>Hello World</h1>,
+            document.getElementById("root")
+        );
+    </script>
+    -->
+
+    <script type="text/babel">
+        let country = "Vietnam";
+        
+        ReactDOM.render(
+            <h1>Good Morning, {country}</h1>,
+            document.getElementById("root")
+        );
+    </script>
+</body>
+
+</html>
