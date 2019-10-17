@@ -1,52 +1,15 @@
-import React, { Component } from "react";
+import React from "react";
 import { render } from "react-dom";
+import Library from './Library';
 
-let weatherData = {
-    total: 70,
-    goal: 100,
-    rainy: 35,
-    sunny: 15,
-    cloudy: 20
-};
-
-const getPercent = decimal => {
-return decimal * 100 + '%';
-}
-
-const calcGoalProgress = (total, goal) => {
-return getPercent(total/goal);
-}
-
-const WeatherCounter = ({total, goal, rainy, sunny, cloudy}) => {
-    return (
-<div>
-                <div>
-                    <p>Total Days: {total}</p>
-                    <p>Goal: {goal}</p>
-                </div>
-                <div>
-                    <p>Rainy: {rainy}</p>
-                </div>
-                <div>
-                    <p>Sunny: {sunny}</p>
-                </div>
-                <div>
-                    <p>Cloudy: {cloudy}</p>
-                </div>
-                <div>
-                    <p>Completion: {calcGoalProgress(total, goal)}</p>
-                </div>
-            </div>
-    )
-}
+let bookList = [
+    {"title": "The Hobbit", "date": "21 September, 1937", "author": "J.R.R. Tolkien", "pages": 304},
+    {"title": "The Fellowship of the Ring", "date": "29 July, 1954", "author": "J.R.R. Tolkien", "pages": 479},
+    {"title": "The Two Towers", "date": "11 November, 1954", "author": "J.R.R. Tolkien", "pages": 415},
+    {"title": "The Return of the King", "date": "20 October, 1955", "author": "J.R.R. Tolkien", "pages": 347}
+];
 
 render(
-    <WeatherCounter
-        total={weatherData.total}
-        goal={weatherData.goal}
-        rainy={weatherData.rainy}
-        sunny={weatherData.sunny}
-        cloudy={weatherData.cloudy}
-    />,
+    <Library books={bookList} />,
     document.getElementById("root")
 );
