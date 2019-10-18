@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://unpkg.com/@babel/standalone/babel.js"></script>
+        <script src="https://unpkg.com/react/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script type="text/babel">
+            class Form extends React.Component {
+                state = {
+                    name: ""
+                };
+                handleSubmit = e => {
+                    console.log(this.state.name);
+                    e.preventDefault();
+                };
+
+                handleChange = e => {
+                    this.setState({
+                        name: e.target.value
+                    });
+                };
+
+                render() {
+                    return (
+                        <form onSubmit={this.handleSubmit}>
+                            <label>
+                                Name:
+                                <input
+                                    type="text"
+                                    value={this.state.name}
+                                    onChange={this.handleChange}
+                                />
+                            </label>
+                            <button>submit</button>
+                        </form>
+                    );
+                }
+            }
+
+            ReactDOM.render(<Form />, document.getElementById("root"));
+        </script>
+    </body>
+</html>

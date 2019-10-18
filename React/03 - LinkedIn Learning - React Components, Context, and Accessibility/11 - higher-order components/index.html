@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://unpkg.com/@babel/standalone/babel.js"></script>
+        <script src="https://unpkg.com/react/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script type="text/babel">
+            // https://www.linkedin.com/learning/react-components-context-and-accessibility/working-with-higher-order-components?u=2093356
+            const DataComponent = (ComposedComponent, url) =>
+                class DataComponent extends React.Component {
+                    constructor(props) {
+                        super(props);
+                        this.state = {
+                            data: [],
+                            loading: false,
+                            loaded: false
+                        };
+                    }
+
+                    componentDidMount() {
+                        this.setState({ loading: true });
+                        fetch(url)
+                            .then(response => response.json())
+                            .then(data =>
+                                this.setState({
+                                    loaded: true,
+                                    loading: false,
+                                    data
+                                })
+                            );
+                    }
+
+                    render() {
+                        return (
+                            <div>
+                                {this.state.loaded ? (
+                                    <ComposedComponent
+                                        {...this.state}
+                                        {...this.props}
+                                    />
+                                ) : (
+                                    <div>Loading...</div>
+                                )}
+                            </div>
+                        );
+                    }
+                };
+
+            const PeopleList = ({ data }) => (
+                <ol>
+                    {data.results.map((person, index) => {
+                        const { first, last } = person.name;
+                        return (
+                            <li key={index}>
+                                {first} {last}
+                            </li>
+                        );
+                    })}
+                </ol>
+            );
+
+            const RandomUsers = DataComponent(
+                PeopleList,
+                "https://randomuser.me/api?results=10"
+            );
+
+            ReactDOM.render(<RandomUsers />, document.getElementById("root"));
+        </script>
+    </body>
+</html>

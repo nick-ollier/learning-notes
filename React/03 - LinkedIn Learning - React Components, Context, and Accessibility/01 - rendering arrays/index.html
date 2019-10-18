@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://unpkg.com/@babel/standalone/babel.js"></script>
+        <script src="https://unpkg.com/react/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script type="text/babel">
+            const data = [
+                { id: 1, greeting: "Hello!" },
+                { id: 2, greeting: "Hey!" },
+                { id: 3, greeting: "Waddup?!" }
+            ];
+
+            const Greetings = ({ data }) => {
+                return data.map(item => {
+                    return <li key={item.key}>{item.greeting}</li>;
+                });
+
+                // return [
+                //     <li key="1">Hello!</li>,
+                //     <li key="2">Hey!</li>,
+                //     <li key="3">Waddup?!</li>
+                // ];
+            };
+
+            ReactDOM.render(
+                <Greetings data={data} />,
+                document.getElementById("root")
+            );
+        </script>
+    </body>
+</html>

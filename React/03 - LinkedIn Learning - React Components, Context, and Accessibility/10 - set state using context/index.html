@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://unpkg.com/@babel/standalone/babel.js"></script>
+        <script src="https://unpkg.com/react/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script type="text/babel">
+            const Context = React.createContext();
+
+            class Provider extends React.Component {
+                state = {
+                    name: "Animal Kingdom Lodge",
+                    roomType: "Luxury Suite"
+                };
+
+                render() {
+                    return (
+                        <Context.Provider
+                            value={{
+                                state: this.state,
+                                changeRoom: () =>
+                                    this.setState({
+                                        roomType: "Toilet Cubicle"
+                                    })
+                            }}
+                        >
+                            {this.props.children}
+                        </Context.Provider>
+                    );
+                }
+            }
+
+            const Room = props => (
+                <div>
+                    <Context.Consumer>
+                        {context => (
+                            <div>
+                                <p>Hotel Name: {context.state.name}</p>
+                                <p>Room Type: {context.state.roomType}</p>
+                                <button onClick={context.changeRoom}>
+                                    Downgrade room
+                                </button>
+                            </div>
+                        )}
+                    </Context.Consumer>
+                </div>
+            );
+
+            const Hotel = props => (
+                <div>
+                    <Room />
+                </div>
+            );
+
+            class Resort extends React.Component {
+                render() {
+                    return (
+                        <Provider>
+                            <div>
+                                <Hotel />
+                            </div>
+                        </Provider>
+                    );
+                }
+            }
+
+            ReactDOM.render(<Resort />, document.getElementById("root"));
+        </script>
+    </body>
+</html>

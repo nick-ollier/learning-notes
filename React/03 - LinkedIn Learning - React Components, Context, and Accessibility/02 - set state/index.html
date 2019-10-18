@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://unpkg.com/@babel/standalone/babel.js"></script>
+        <script src="https://unpkg.com/react/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script type="text/babel">
+            const NowEating = props => <h1>{props.meal}</h1>;
+
+            class Menu extends React.Component {
+                state = {
+                    meal: "Cheeseburger"
+                };
+
+                addFries = () => {
+                    this.setState(prevState => {
+                        return { meal: `${prevState.meal} & Fries` };
+                    });
+                };
+
+                render() {
+                    return (
+                        <div>
+                            <NowEating meal={this.state.meal} />
+
+                            {this.state.meal === "Cheeseburger" && (
+                                <button onClick={this.addFries}>
+                                    Add Fries?
+                                </button>
+                            )}
+                        </div>
+                    );
+                }
+            }
+
+            ReactDOM.render(<Menu />, document.getElementById("root"));
+        </script>
+    </body>
+</html>

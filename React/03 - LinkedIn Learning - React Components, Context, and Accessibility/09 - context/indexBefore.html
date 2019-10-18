@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://unpkg.com/@babel/standalone/babel.js"></script>
+        <script src="https://unpkg.com/react/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script type="text/babel">
+            const Room = props => <div>{props.name}</div>;
+
+            const Hotel = props => (
+                <div>
+                    <Room name={props.name} />
+                </div>
+            );
+
+            class Resort extends React.Component {
+                state = {
+                    name: "Animal Kingdom Lodge"
+                };
+
+                render() {
+                    return (
+                        <div>
+                            <Hotel name={this.state.name} />
+                        </div>
+                    );
+                }
+            }
+
+            ReactDOM.render(<Resort />, document.getElementById("root"));
+        </script>
+    </body>
+</html>
