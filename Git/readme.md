@@ -102,6 +102,10 @@ _push changes up to repository_
 
     git push
 
+_delete remote branch (in most cases, remote name is origin)_
+
+    git push -d [remote name] [branch name]
+
 ## git pull
 
 _pull latest changes from repository_
