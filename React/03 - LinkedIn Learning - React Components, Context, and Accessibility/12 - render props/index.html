@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://unpkg.com/@babel/standalone/babel.js"></script>
+        <script src="https://unpkg.com/react/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script type="text/babel">
+            const greeting = "Hello!";
+
+            // const Greeting = ({ render }) => (
+            const Greeting = () => (
+                // <div>{render({ message: greeting })}</div>
+                <h1>{greeting ? greeting : null}</h1>
+            );
+
+            const App = () => (
+                // <Greeting render={({ message }) => <h1>{message}</h1>} />
+                <Greeting />
+            );
+
+            ReactDOM.render(<App />, document.getElementById("root"));
+        </script>
+    </body>
+</html>
