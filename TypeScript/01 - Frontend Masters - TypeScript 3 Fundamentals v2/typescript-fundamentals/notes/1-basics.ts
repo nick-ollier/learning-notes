@@ -155,6 +155,5 @@
 // otherContactInfo.name; // NOTE: we can access anything on _either_ type
 // otherContactInfo.email;
 // otherContactInfo.phone;
-// const zzz: any = {} as never;
 
 export default {};
