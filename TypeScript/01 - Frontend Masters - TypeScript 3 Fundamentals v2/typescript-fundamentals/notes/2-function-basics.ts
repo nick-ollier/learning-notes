@@ -11,13 +11,21 @@ import { HasEmail, HasPhoneNumber } from "./1-basics";
 // }
 
 // (2) or the arrow-function variant
-// const sendTextMessage = (
-//   to: HasPhoneNumber
-// ): { recipient: string; body: string } => {
-//   return {
-//     recipient: `${to.name} <${to.phone}>`,
-//     body: "You're pre-qualified for a loan!"
-//   };
+// const sendTextMessage = (to: HasPhoneNumber): { recipient: string; body: string } => {
+//     return {
+//         recipient: `${to.name} <${to.phone}>`,
+//         body: "You're pre-qualified for a loan!",
+//     };
+// };
+
+// const sendTextMessage = (to) => {
+//     if (!to.name && !to.phone) return { body: "You're pre-qualified for a loan!" };
+
+//     return {
+//         recipientName: to.name,
+//         recipientNumber: to.phone,
+//         body: "You're pre-qualified for a loan!",
+//     };
 // };
 
 // (3) return types can almost always be inferred
@@ -47,15 +55,12 @@ import { HasEmail, HasPhoneNumber } from "./1-basics";
 // function contactPeople(method: "phone", ...people: HasPhoneNumber[]): void;
 
 // "function implementation"
-// function contactPeople(
-//   method: "email" | "phone",
-//   ...people: (HasEmail | HasPhoneNumber)[]
-// ): void {
-//   if (method === "email") {
-//     (people as HasEmail[]).forEach(sendEmail);
-//   } else {
-//     (people as HasPhoneNumber[]).forEach(sendTextMessage);
-//   }
+// function contactPeople(method: "email" | "phone", ...people: (HasEmail | HasPhoneNumber)[]): void {
+//     if (method === "email") {
+//         (people as HasEmail[]).forEach(sendEmail);
+//     } else {
+//         (people as HasPhoneNumber[]).forEach(sendTextMessage);
+//     }
 // }
 
 // ✅ email works
